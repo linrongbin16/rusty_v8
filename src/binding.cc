@@ -385,6 +385,12 @@ void v8__ResourceConstraints__ConfigureDefaultsFromHeapSize(
                                              maximum_heap_size_in_bytes);
 }
 
+void v8__ResourceConstraints__ConfigureDefaults(
+    v8::ResourceConstraints* constraints, uint64_t physical_memory,
+    uint64_t virtual_memory_limit) {
+  constraints->ConfigureDefaults(physical_memory, virtual_memory_limit);
+}
+
 void v8__HandleScope__CONSTRUCT(uninit_t<v8::HandleScope>* buf,
                                 v8::Isolate* isolate) {
   construct_in_place<v8::HandleScope>(buf, isolate);
@@ -3745,8 +3751,8 @@ void v8__CompiledWasmModule__DELETE(v8::CompiledWasmModule* self) {
 extern "C" {
 
 size_t icu_get_default_locale(char* output, size_t output_len) {
-  const icu_73::Locale& default_locale = icu::Locale::getDefault();
-  icu_73::CheckedArrayByteSink sink(output, static_cast<uint32_t>(output_len));
+  const icu_74::Locale& default_locale = icu::Locale::getDefault();
+  icu_74::CheckedArrayByteSink sink(output, static_cast<uint32_t>(output_len));
   UErrorCode status = U_ZERO_ERROR;
   default_locale.toLanguageTag(sink, status);
   assert(status == U_ZERO_ERROR);
